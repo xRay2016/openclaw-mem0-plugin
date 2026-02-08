@@ -6,6 +6,17 @@ const formatMemories = (memories) => {
   return `\n<relevant_memories>\n${memoryText}\n</relevant_memories>\n`;
 };
 
+const extractText = (content) => {
+  if (typeof content === 'string') return content;
+  if (Array.isArray(content)) {
+    return content
+      .filter(p => p.type === 'text' && p.text)
+      .map(p => p.text)
+      .join('\n');
+  }
+  return String(content || '');
+};
+
 const plugin = {
   id: "openclaw-mem0-plugin",
   name: "openclaw-mem0-plugin",
@@ -36,7 +47,9 @@ const plugin = {
 
       // Check for prompt existence (event.prompt or event.messages)
       // OpenClaw passes `prompt` string in some versions, or we derive from messages
-      const userPrompt = event.prompt || ctx.messages?.findLast(m => m.role === 'user')?.content;
+      const rawPrompt = event.prompt || ctx.messages?.findLast(m => m.role === 'user')?.content;
+      const userPrompt = extractText(rawPrompt);
+
       if (!userPrompt || userPrompt.length < 2) return;
 
       const client = getClient();
@@ -84,8 +97,8 @@ const plugin = {
 
         if (lastUserMsg && lastAssistantMsg) {
           const memoryContent = [
-            { role: 'user', content: lastUserMsg.content },
-            { role: 'assistant', content: lastAssistantMsg.content }
+            { role: 'user', content: extractText(lastUserMsg.content) },
+            { role: 'assistant', content: extractText(lastAssistantMsg.content) }
           ];
 
           await client.add(memoryContent, { user_id: userId });
