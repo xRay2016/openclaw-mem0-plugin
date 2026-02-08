@@ -4,6 +4,9 @@
   "description": "OpenClaw memory plugin using mem0",
   "main": "index.js",
   "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
   "dependencies": {
     "dotenv": "^17.2.4"
   },
@@ -14,5 +17,8 @@
     "mem0"
   ],
   "author": "xray20161@gmail.com",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^30.2.0"
+  }
 }
