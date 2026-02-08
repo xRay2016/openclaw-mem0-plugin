@@ -32,7 +32,7 @@
     ]
   },
   "author": "xray20161@gmail.com",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "devDependencies": {
     "jest": "^30.2.0"
   }
