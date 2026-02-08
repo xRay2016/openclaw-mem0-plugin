@@ -41,4 +41,4 @@ echo "MEM0_API_KEY=your_api_key_here" >> ~/.openclaw/.env
 
 ## License
 
-MIT
+Apache License Version 2.0
