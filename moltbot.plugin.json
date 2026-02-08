@@ -10,7 +10,8 @@
     "properties": {
       "baseUrl": {
         "type": "string",
-        "description": "Mem0 base URL"
+        "description": "Mem0 API Base URL",
+        "default": "https://api.mem0.ai"
       },
       "apiKey": {
         "type": "string",
