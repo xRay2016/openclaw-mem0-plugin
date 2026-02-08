@@ -60,7 +60,7 @@ const plugin = {
 
       try {
         // Use configured userId or context userId
-        const userId = ctx.userId || cfg.userId || 'default-user';
+        const userId = ctx.userId || cfg.userId || 'openclaw-user';
 
         const searchResults = await client.search(userPrompt, { user_id: userId });
 
@@ -89,7 +89,7 @@ const plugin = {
       }
 
       try {
-        const userId = ctx.userId || cfg.userId || 'default-user';
+        const userId = ctx.userId || cfg.userId || 'openclaw-user';
         const messages = event.messages;
 
         const lastUserMsg = messages.findLast(m => m.role === 'user');
