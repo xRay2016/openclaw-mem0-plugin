@@ -16,6 +16,21 @@
     "memory",
     "mem0"
   ],
+  "openclaw": {
+    "extensions": [
+      "./index.js"
+    ]
+  },
+  "clawdbot": {
+    "extensions": [
+      "./index.js"
+    ]
+  },
+  "moltbot": {
+    "extensions": [
+      "./index.js"
+    ]
+  },
   "author": "xray20161@gmail.com",
   "license": "MIT",
   "devDependencies": {
