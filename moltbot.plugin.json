@@ -1,0 +1,37 @@
+{
+  "id": "moltbot-mem0-plugin",
+  "name": "Mem0 MoltBot Plugin",
+  "description": "Mem0 search + add memory via lifecycle hooks",
+  "version": "0.1.0",
+  "kind": "lifecycle",
+  "main": "./index.js",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "baseUrl": {
+        "type": "string",
+        "description": "Mem0 base URL"
+      },
+      "apiKey": {
+        "type": "string",
+        "description": "Mem0 API Key (Token auth; supports ~/.openclaw/.env, ~/.moltbot/.env, ~/.clawdbot/.env; falls back to process env)"
+      },
+      "userId": {
+        "type": "string",
+        "description": "Mem0 user_id (default: moltbot-user)",
+        "default": "moltbot-user"
+      },
+      "searchEnabled": {
+        "type": "boolean",
+        "description": "Enable search memory search (default: true)",
+        "default": true
+      },
+      "addEnabled": {
+        "type": "boolean",
+        "description": "Enable add memory (default: true)",
+        "default": true
+      }
+    },
+    "additionalProperties": false
+  }
+}

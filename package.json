@@ -1,0 +1,18 @@
+{
+  "name": "openclaw-mem0-plugin",
+  "version": "1.0.0",
+  "description": "OpenClaw memory plugin using mem0",
+  "main": "index.js",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^17.2.4"
+  },
+  "keywords": [
+    "openclaw",
+    "plugin",
+    "memory",
+    "mem0"
+  ],
+  "author": "xray20161@gmail.com",
+  "license": "MIT"
+}
