@@ -1,5 +1,5 @@
 {
-  "id": "openclaw-mem0-plugin",
+  "id": "openclaw-mem0",
   "kind": "memory",
   "uiHints": {
     "mode": {

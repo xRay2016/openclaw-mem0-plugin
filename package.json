@@ -1,5 +1,5 @@
 {
-  "name": "@xray2016/openclaw-mem0-plugin",
+  "name": "@xray2016/openclaw-mem0",
   "version": "1.0.1",
   "description": "OpenClaw memory plugin using mem0",
   "publishConfig": {
@@ -7,7 +7,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xRay2016/openclaw-mem0-plugin.git"
+    "url": "git+https://github.com/xRay2016/openclaw-mem0.git"
   },
   "main": "index.js",
   "type": "module",
