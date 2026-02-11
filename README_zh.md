@@ -24,7 +24,7 @@ echo "MEM0_API_KEY=your_api_key_here" >> ~/.openclaw/.env
 
 1.  使用 OpenClaw CLI 安装插件：
     ```bash
-    openclaw plugins install github:xRay2016/openclaw-mem0-plugin
+    openclaw plugins install https://github.com/xRay2016/openclaw-mem0-plugin.git
     ```
 
 2.  重启 OpenClaw Gateway 以应用更改：
