@@ -8,7 +8,9 @@
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "dependencies": {
-    "dotenv": "^17.2.4"
+    "dotenv": "^17.2.4",
+    "mem0ai": "^2.2.2",
+    "openclaw": "^2026.2.9"
   },
   "keywords": [
     "openclaw",
@@ -18,17 +20,17 @@
   ],
   "openclaw": {
     "extensions": [
-      "./index.js"
+      "./index.ts"
     ]
   },
   "clawdbot": {
     "extensions": [
-      "./index.js"
+      "./index.ts"
     ]
   },
   "moltbot": {
     "extensions": [
-      "./index.js"
+      "./index.ts"
     ]
   },
   "author": "xray20161@gmail.com",
