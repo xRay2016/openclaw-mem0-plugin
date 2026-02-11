@@ -1,13 +1,21 @@
 {
-  "name": "openclaw-mem0-plugin",
+  "name": "@xray2016/openclaw-mem0-plugin",
   "version": "1.0.0",
   "description": "OpenClaw memory plugin using mem0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xRay2016/openclaw-mem0-plugin.git"
+  },
   "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "dependencies": {
+    "@sinclair/typebox": "^0.34.48",
     "dotenv": "^17.2.4",
     "mem0ai": "^2.2.2",
     "openclaw": "^2026.2.9"
