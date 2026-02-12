@@ -32,9 +32,8 @@ describe('MemoryClient', () => {
   describe('search', () => {
     it('should make a correct search request', async () => {
       const client = new MemoryClient({ apiKey: 'test-key' });
-      // Mock ping first as it's called internally
+      // Mock search response directly (no ping in new impl)
       fetch
-        .mockResolvedValueOnce({ ok: true, text: async () => JSON.stringify({ status: 'ok' }) }) // ping
         .mockResolvedValueOnce({ ok: true, text: async () => JSON.stringify([{ id: '1', memory: 'test' }]) }); // search
 
       const result = await client.search('hello');
@@ -56,12 +55,11 @@ describe('MemoryClient', () => {
 
   describe('add', () => {
     it('should make a correct add request', async () => {
-      const client = new MemoryClient({ apiKey: 'test-key', organizationId: 'org-1' });
+      const client = new MemoryClient({ apiKey: 'test-key', organizationId: 'org-1', projectId: 'proj-1' });
       const messages = [{ role: 'user', content: 'hi' }];
 
-      // Mock ping first
+      // Mock add response directly (no ping in new impl)
       fetch
-        .mockResolvedValueOnce({ ok: true, text: async () => JSON.stringify({ status: 'ok' }) }) // ping
         .mockResolvedValueOnce({ ok: true, text: async () => JSON.stringify({ success: true }) }); // add
 
       await client.add(messages);
@@ -72,7 +70,8 @@ describe('MemoryClient', () => {
           method: 'POST',
           body: JSON.stringify({
             messages,
-            org_id: 'org-1'
+            org_id: 'org-1',
+            project_id: 'proj-1'
           })
         })
       );
@@ -83,9 +82,8 @@ describe('MemoryClient', () => {
     it('should handle API errors', async () => {
       const client = new MemoryClient({ apiKey: 'test-key' });
 
-      // Mock ping success, then add failure
+      // Mock add failure directly (no ping in new impl)
       fetch
-        .mockResolvedValueOnce({ ok: true, text: async () => JSON.stringify({ status: 'ok' }) }) // ping
         .mockResolvedValueOnce({
           ok: false,
           text: async () => 'Invalid API Key'
