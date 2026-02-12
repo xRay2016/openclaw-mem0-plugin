@@ -1,6 +1,6 @@
 {
   "name": "@xray2016/openclaw-mem0",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "OpenClaw memory plugin using mem0",
   "publishConfig": {
     "access": "public"
