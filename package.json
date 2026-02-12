@@ -44,6 +44,7 @@
   "author": "xray20161@gmail.com",
   "license": "Apache-2.0",
   "devDependencies": {
-    "jest": "^30.2.0"
+    "jest": "^30.2.0",
+    "tsx": "^4.21.0"
   }
 }

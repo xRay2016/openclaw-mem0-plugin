@@ -134,10 +134,10 @@ class PlatformProvider implements Mem0Provider {
   }
 
   private async _init(): Promise<void> {
-    const { default: MemoryClient } = await import("mem0ai");
-    const opts: { apiKey: string; org_id?: string; project_id?: string; host?: string } = { apiKey: this.apiKey };
-    if (this.orgId) opts.org_id = this.orgId;
-    if (this.projectId) opts.project_id = this.projectId;
+    const { MemoryClient } = await import("./lib/mem0.js");
+    const opts: { apiKey: string; orgId?: string; projectId?: string; host?: string } = { apiKey: this.apiKey };
+    if (this.orgId) opts.orgId = this.orgId;
+    if (this.projectId) opts.projectId = this.projectId;
     if (this.host) opts.host = this.host;
     this.client = new MemoryClient(opts);
   }
@@ -221,25 +221,28 @@ class OSSProvider implements Mem0Provider {
   }
 
   private async _init(): Promise<void> {
-    const { Memory } = await import("mem0ai/oss");
+    try {
+      const { Memory } = await import("mem0ai/oss");
+      const config: Record<string, unknown> = { version: "v1.1" };
+      // ... (existing config logic)
+      if (this.ossConfig?.embedder) config.embedder = this.ossConfig.embedder;
+      if (this.ossConfig?.vectorStore)
+        config.vectorStore = this.ossConfig.vectorStore;
+      if (this.ossConfig?.llm) config.llm = this.ossConfig.llm;
 
-    const config: Record<string, unknown> = { version: "v1.1" };
+      if (this.ossConfig?.historyDbPath) {
+        const dbPath = this.resolvePath
+          ? this.resolvePath(this.ossConfig.historyDbPath)
+          : this.ossConfig.historyDbPath;
+        config.historyDbPath = dbPath;
+      }
 
-    if (this.ossConfig?.embedder) config.embedder = this.ossConfig.embedder;
-    if (this.ossConfig?.vectorStore)
-      config.vectorStore = this.ossConfig.vectorStore;
-    if (this.ossConfig?.llm) config.llm = this.ossConfig.llm;
+      if (this.customPrompt) config.customPrompt = this.customPrompt;
 
-    if (this.ossConfig?.historyDbPath) {
-      const dbPath = this.resolvePath
-        ? this.resolvePath(this.ossConfig.historyDbPath)
-        : this.ossConfig.historyDbPath;
-      config.historyDbPath = dbPath;
+      this.memory = new Memory(config);
+    } catch (error) {
+       throw new Error("Failed to load 'mem0ai/oss'. Open-source mode requires 'mem0ai' package to be installed manually: " + String(error));
     }
-
-    if (this.customPrompt) config.customPrompt = this.customPrompt;
-
-    this.memory = new Memory(config);
   }
 
   async add(
